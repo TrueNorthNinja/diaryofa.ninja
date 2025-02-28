@@ -2,7 +2,7 @@
 title: "My First Blog Post"
 description: "This is the first post of my new Astro blog."
 pubDate: 2023-07-01
-heroImage: "/ninjabg.jpeg"
+heroImage: bg.jpeg
 tags: ["astro", "blogging", "learning in public"]
 ---
 
