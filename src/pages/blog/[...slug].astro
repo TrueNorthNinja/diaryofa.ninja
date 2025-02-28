@@ -1,6 +1,7 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -35,22 +36,26 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-us", {
 <Layout title={title}>
   <main class="container mx-auto px-4 py-8 max-w-4xl">
     <article
-      class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+      class="bg-monokai-bg rounded-lg shadow-lg overflow-hidden border border-monokai-purple/20"
     >
       {
         heroImage && (
-          <div class="w-full aspect-video overflow-hidden">
-            <img
+          <div class="w-full overflow-hidden aspect-video">
+            <Image
               src={heroImage}
               alt={`Cover image for ${title}`}
-              class="w-full h-full object-cover"
+              width={1200}
+              height={675}
+              class="w-full object-cover h-full"
+              format="webp"
+              quality={80}
             />
           </div>
         )
       }
 
       <div class="p-8">
-        <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+        <h1 class="text-4xl font-bold mb-4 text-monokai-red">
           {title}
         </h1>
 
@@ -58,14 +63,14 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-us", {
           {
             tags &&
               tags.map((tag) => (
-                <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 text-sm rounded-full">
+                <span class="px-3 py-1 bg-monokai-purple/20 text-monokai-yellow text-sm rounded-full">
                   {tag}
                 </span>
               ))
           }
         </div>
 
-        <div class="text-gray-600 dark:text-gray-400 mb-8">
+        <div class="text-monokai-blue mb-8">
           <time datetime={pubDate.toISOString()}
             >Published: {formattedPubDate}</time
           >
@@ -80,7 +85,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-us", {
           }
         </div>
 
-        <div class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="prose prose-lg max-w-none">
           <Content />
         </div>
       </div>
@@ -89,7 +94,7 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-us", {
     <div class="mt-8">
       <a
         href="/blog"
-        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+        class="inline-flex items-center px-4 py-2 bg-monokai-purple/20 text-monokai-fg rounded-md hover:bg-monokai-purple/30 transition-colors duration-300"
       >
         ← Back to Blog
       </a>

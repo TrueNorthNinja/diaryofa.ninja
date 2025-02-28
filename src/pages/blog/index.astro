@@ -15,8 +15,15 @@ const sortedPosts = posts.sort(
 ---
 
 <Layout title="Blog | My Astro Blog">
-  <main class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center">Blog</h1>
+  <main class="container mx-auto px-4 py-8 max-w-6xl">
+    <h1 class="text-4xl font-bold mb-8 text-center text-monokai-red">Blog</h1>
+
+    <div class="mb-8 max-w-2xl mx-auto text-center">
+      <p class="text-monokai-fg/80 text-lg">
+        Explore my latest thoughts, tutorials, and insights on web development,
+        design, and technology.
+      </p>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {sortedPosts.map((post) => <BlogPostCard post={post} />)}

@@ -1,2 +1,25 @@
-<li><a href="/blog" class="hover:text-blue-500 transition-colors">Blog</a></li>
+---
+const navItems = [
+  { href: "/", text: "Home" },
+  { href: "/blog", text: "Blog" },
+];
+---
 
+<nav class="bg-monokai-bg border-b border-monokai-purple/20 py-4">
+  <div class="container mx-auto px-4">
+    <ul class="flex space-x-6">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="text-monokai-fg hover:text-monokai-yellow transition-colors duration-300 font-medium"
+            >
+              {item.text}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+  <main class="container mx-auto px-4 py-12">
+    <section class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold text-monokai-yellow mb-6">
+        Welcome to My Blog
+      </h1>
+      <p class="text-xl text-monokai-fg/80 mb-8">
+        Hi! I'm a developer sharing my thoughts and experiences about
+        programming, technology, and everything in between.
+      </p>
+      <div class="space-y-6">
+        <div
+          class="bg-monokai-bg/50 border border-monokai-purple/20 rounded-lg p-6 hover:border-monokai-purple/40 transition-colors"
+        >
+          <h2 class="text-2xl font-semibold text-monokai-green mb-3">
+            Latest Posts
+          </h2>
+          <p class="text-monokai-fg/70">
+            Check out my most recent articles and stay up to date with my latest
+            content.
+          </p>
+          <a
+            href="/blog"
+            class="inline-block mt-4 text-monokai-blue hover:text-monokai-yellow transition-colors"
+          >
+            View all posts →
+          </a>
+        </div>
+
+        <div
+          class="bg-monokai-bg/50 border border-monokai-purple/20 rounded-lg p-6 hover:border-monokai-purple/40 transition-colors"
+        >
+          <h2 class="text-2xl font-semibold text-monokai-orange mb-3">
+            About Me
+          </h2>
+          <p class="text-monokai-fg/70">
+            I'm passionate about building things for the web and sharing what I
+            learn along the way.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
 </Layout>
