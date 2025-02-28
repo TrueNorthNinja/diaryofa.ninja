@@ -1,0 +1,98 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags } = post.data;
+const { Content } = await post.render();
+
+// Format dates
+const formattedPubDate = pubDate.toLocaleDateString("en-us", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const formattedUpdatedDate = updatedDate?.toLocaleDateString("en-us", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title={title}>
+  <main class="container mx-auto px-4 py-8 max-w-4xl">
+    <article
+      class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+    >
+      {
+        heroImage && (
+          <div class="w-full aspect-video overflow-hidden">
+            <img
+              src={heroImage}
+              alt={`Cover image for ${title}`}
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )
+      }
+
+      <div class="p-8">
+        <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+          {title}
+        </h1>
+
+        <div class="flex flex-wrap gap-2 mb-6">
+          {
+            tags &&
+              tags.map((tag) => (
+                <span class="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100 text-sm rounded-full">
+                  {tag}
+                </span>
+              ))
+          }
+        </div>
+
+        <div class="text-gray-600 dark:text-gray-400 mb-8">
+          <time datetime={pubDate.toISOString()}
+            >Published: {formattedPubDate}</time
+          >
+          {
+            updatedDate && (
+              <div>
+                <time datetime={updatedDate.toISOString()}>
+                  Updated: {formattedUpdatedDate}
+                </time>
+              </div>
+            )
+          }
+        </div>
+
+        <div class="prose prose-lg dark:prose-invert max-w-none">
+          <Content />
+        </div>
+      </div>
+    </article>
+
+    <div class="mt-8">
+      <a
+        href="/blog"
+        class="inline-flex items-center px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+      >
+        ← Back to Blog
+      </a>
+    </div>
+  </main>
+</Layout>
