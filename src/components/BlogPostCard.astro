@@ -12,7 +12,7 @@ const { title, description, pubDate, heroImage } = post.data;
 
 // Import all images from the assets directory
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/assets/*.{jpeg,jpg,png,gif}"
+  "/src/assets/**/*.{jpeg,jpg,png,gif}"
 );
 
 // Construct the full path to the image

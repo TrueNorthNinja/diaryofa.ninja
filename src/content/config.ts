@@ -7,7 +7,7 @@ export const collections = {
       description: z.string(),
       pubDate: z.date(),
       updatedDate: z.date().optional(),
-      heroImage: z.string().optional(),
+      heroImage: z.string().optional().default("bg.jpeg"),
       tags: z.array(z.string()).optional(),
       draft: z.boolean().optional().default(false),
     }),
